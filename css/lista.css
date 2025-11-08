@@ -1,0 +1,11 @@
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+ body {
+    background: #cdd9e6
+  }
+  .filter {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: aliceblue;
+  }
