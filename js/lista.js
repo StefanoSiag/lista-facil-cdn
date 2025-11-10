@@ -196,7 +196,7 @@ function atualizarTotal() {
     });
 
 
-    document.getElementById("totalGeral").textContent = `Total: R$ ${totalGeral.toFixed(2)}`;
+    document.getElementById("totalGeral").textContent = ` R$ ${totalGeral.toFixed(2)}`;
 
 }
 
