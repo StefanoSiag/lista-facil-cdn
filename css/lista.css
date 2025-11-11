@@ -1,14 +1,49 @@
 .selector-for-some-widget {
   box-sizing: content-box;
 }
- body {
-    background: #cdd9e6
-  }
-  .filter {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: aliceblue;
-  }
-  #capturar{
-    display: none;
-  }
+
+body {
+  background: #cdd9e6
+}
+
+.filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #EFF3F6;
+}
+
+#capturar {
+  display: none;
+}
+
+input, select {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.b-shadow-1 {
+  background-color: #EFF2F9;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 5px;
+  box-shadow: inset #ffffff -5px -5px 5px 0px;
+
+}
+
+.b-shadow-2 {
+  /* background-color: #EFF2F9; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: inset #dddddd 5px 5px 5px 0px;
+}
+
+

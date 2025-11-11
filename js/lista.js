@@ -63,7 +63,7 @@ function atualizarTotal() {
     });
 
 
-    document.getElementById("totalGeral").textContent = `Total: R$ ${totalGeral.toFixed(2)}`;
+    document.getElementById("totalGeral").textContent = `R$ ${totalGeral.toFixed(2)}`;
 
 }
 
@@ -97,7 +97,8 @@ function adicionarItem() {
     const valorUn = parseFloat(document.getElementById("valorUn").value);
 
     const total = (quantidade * valorUn).toFixed(2);
-
+    
+    
 
     const item = { produto, quantidade, valorUn, total };
 
@@ -116,6 +117,7 @@ function adicionarLinha(item) {
 
     const linha = document.createElement("tr");
 
+    // document.getElementsByTagName("tr");
 
     linha.innerHTML = `
 
@@ -180,24 +182,69 @@ function removerItem(botao) {
 }
 
 
-function atualizarTotal() {
+// function atualizarTotal() {
 
-    const linhas = document.querySelectorAll("#tabela tbody tr");
+//     const linhas = document.querySelectorAll("#tabela tbody tr");
 
-    let totalGeral = 0;
+//     let totalGeral = 0;
 
 
-    linhas.forEach(linha => {
+//     linhas.forEach(linha => {
 
-        const valor = parseFloat(linha.cells[3].textContent.replace("R$ ", "").replace(",", "."));
+//         const valor = parseFloat(linha.cells[3].textContent.replace("R$ ", "").replace(",", "."));
 
-        totalGeral += valor;
+//         totalGeral += valor;
 
+//     });
+
+
+//     document.getElementById("totalGeral").textContent = `Total: R$ ${totalGeral.toFixed(2)}`;
+
+// }
+
+function lerImagem(input) {
+    const imagem = input.files[1];
+    if (!imagem) return;
+    
+    Tesseract.recognize(imagem, 'por', {
+        logger: m => console.log(m)
+    }).then(({ data: { text } }) => {
+        console.log("Texto original extraído:", text);
+        console.log("IMG:", imagem);
+
+        // // Normaliza e limpa o texto
+        // let textoLimpo = text
+        //     .replace(/[^\d,.\n]/g, '')    // remove letras e símbolos desnecessários
+        //     .replace(/\s+/g, ' ')         // normaliza espaços
+        //     .trim();
+
+        // console.log("Texto limpo:", textoLimpo);
+
+        // // Procura padrões de preços comuns: 9,99 / 12.90 / R$ 3,50 / etc.
+        // const regexPreco = /(?:\d{1,3}(?:[\.,]\d{3})*[\.,]\d{2})/g;
+        // const encontrados = textoLimpo.match(regexPreco);
+
+        // if (encontrados && encontrados.length > 0) {
+        //     // Converte o primeiro valor encontrado em número válido
+        //     const precoBruto = encontrados[0]
+        //         .replace(/\./g, '')  // remove separadores de milhar
+        //         .replace(',', '.');  // converte vírgula para ponto
+
+        //     const valorNumerico = parseFloat(precoBruto);
+        //     console.log("Opa:", valorNumerico);
+        //     if (!isNaN(valorNumerico)) {
+        //         document.getElementById("valorUn").value = valorNumerico.toFixed(2);
+        //         console.log("Valor reconhecido:", valorNumerico);
+        //         return;
+        //     }
+        // }
+
+        alert("Não foi possível identificar corretamente o valor na imagem.");
+
+    }).catch(err => {
+        console.error("Erro no OCR:", err);
+        alert("Erro ao processar a imagem.");
     });
-
-
-    document.getElementById("totalGeral").textContent = `Total: R$ ${totalGeral.toFixed(2)}`;
-
 }
 
 // function lerImagem(input) {
@@ -205,64 +252,20 @@ function atualizarTotal() {
 //     if (!imagem) return;
 
 //     Tesseract.recognize(imagem, 'por', {
-//         logger: m => console.log(m)
+//         logger: m => console.log(m) // opcional: mostra progresso no console
 //     }).then(({ data: { text } }) => {
-//         console.log("Texto original extraído:", text);
+//         console.log("Texto extraído:", text); // debug
 
-//         // Normaliza e limpa o texto
-//         let textoLimpo = text
-//             .replace(/[^\d,.\n]/g, '')    // remove letras e símbolos desnecessários
-//             .replace(/\s+/g, ' ')         // normaliza espaços
-//             .trim();
-
-//         console.log("Texto limpo:", textoLimpo);
-
-//         // Procura padrões de preços comuns: 9,99 / 12.90 / R$ 3,50 / etc.
-//         const regexPreco = /(?:\d{1,3}(?:[\.,]\d{3})*[\.,]\d{2})/g;
-//         const encontrados = textoLimpo.match(regexPreco);
-
-//         if (encontrados && encontrados.length > 0) {
-//             // Converte o primeiro valor encontrado em número válido
-//             const precoBruto = encontrados[0]
-//                 .replace(/\./g, '')  // remove separadores de milhar
-//                 .replace(',', '.');  // converte vírgula para ponto
-
-//             const valorNumerico = parseFloat(precoBruto);
-
-//             if (!isNaN(valorNumerico)) {
-//                 document.getElementById("valorUn").value = valorNumerico.toFixed(2);
-//                 console.log("Valor reconhecido:", valorNumerico);
-//                 return;
-//             }
+//         // Tenta encontrar um valor numérico no texto
+//         const match = text.match(/(\d+[,\.]?\d{0,2})/);
+//         if (match) {
+//             const valor = match[1].replace(",", ".");
+//             document.getElementById("valorUn").value = parseFloat(valor).toFixed(2);
+//         } else {
+//             alert("Não foi possível identificar o valor na imagem.");
 //         }
-
-//         alert("Não foi possível identificar corretamente o valor na imagem.");
-
 //     }).catch(err => {
 //         console.error("Erro no OCR:", err);
 //         alert("Erro ao processar a imagem.");
 //     });
-// }
-
-function lerImagem(input) {
-    const imagem = input.files[0];
-    if (!imagem) return;
-
-    Tesseract.recognize(imagem, 'por', {
-        logger: m => console.log(m) // opcional: mostra progresso no console
-    }).then(({ data: { text } }) => {
-        console.log("Texto extraído:", text); // debug
-
-        // Tenta encontrar um valor numérico no texto
-        const match = text.match(/(\d+[,\.]?\d{0,2})/);
-        if (match) {
-            const valor = match[1].replace(",", ".");
-            document.getElementById("valorUn").value = parseFloat(valor).toFixed(2);
-        } else {
-            alert("Não foi possível identificar o valor na imagem.");
-        }
-    }).catch(err => {
-        console.error("Erro no OCR:", err);
-        alert("Erro ao processar a imagem.");
-    });
-} 
+// } 
