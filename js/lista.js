@@ -245,6 +245,13 @@ function lerImagem(input) {
         console.error("Erro no OCR:", err);
         alert("Erro ao processar a imagem.");
     });
+<<<<<<< HEAD
+=======
+
+
+    document.getElementById("totalGeral").textContent = ` R$ ${totalGeral.toFixed(2)}`;
+
+>>>>>>> 08a634f8bdb584b71603a1b36779cc894e999d48
 }
 
 // function lerImagem(input) {
