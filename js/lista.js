@@ -66,7 +66,14 @@ function atualizarTotal() {
     document.getElementById("totalGeral").textContent = `Total: R$ ${totalGeral.toFixed(2)}`;
 
 }
+// Quantidade de itens no select
 
+let quantidadeOptions = "";
+for (let i = 1; i < 100; i++) {
+   quantidadeOptions += "<option >" + [i] + "</option>";
+}
+
+document.querySelector(".itenOpt").innerHTML = quantidadeOptions;
 //---------
 
 // Carrega os itens salvos ao abrir a página
