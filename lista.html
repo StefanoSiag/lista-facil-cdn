@@ -21,18 +21,7 @@
   <script src="https://stefanosiag.github.io/lista-facil-cdn/js/lista.js"></script>
   <script src="https://stefanosiag.github.io/lista-facil-cdn/js/tesseract.min.js"></script>
 
-<script>
 
-// Quantidade de itens no select
-
-let quantidadeOptions = "";
-for (let i = 1; i < 100; i++) {
-   quantidadeOptions += "<option >" + [i] + "</option>";
-}
-
-document.querySelector(".itenOpt").innerHTML = quantidadeOptions;
-
-</script>
 
   <title>Lista Facíl</title>
 </head>
@@ -190,5 +179,16 @@ document.querySelector(".itenOpt").innerHTML = quantidadeOptions;
 
 
 </body>
+<script>
 
+// Quantidade de itens no select
+
+let quantidadeOptions = "";
+for (let i = 1; i < 100; i++) {
+   quantidadeOptions += "<option >" + [i] + "</option>";
+}
+
+document.querySelector(".itenOpt").innerHTML = quantidadeOptions;
+
+</script>
 </html>
